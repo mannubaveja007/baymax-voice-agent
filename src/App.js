@@ -83,11 +83,16 @@ function App() {
       </div>
 
       {/* Foreground Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-lg animate-slide-down">
+      <div
+        className={`absolute z-10 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${focus === 'fullBody'
+            ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100'
+            : 'top-8 left-8 translate-x-0 translate-y-0 scale-75 items-start mt-0'
+          }`}
+      >
+        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-lg pb-1">
           Baymax AI
         </h1>
-        <div className="animate-slide-up mt-8">
+        <div className={`transition-all duration-1000 ease-in-out ${focus === 'fullBody' ? 'mt-8' : 'mt-4 origin-left'}`}>
           <VoiceChat setFocus={setFocus} />
         </div>
       </div>
