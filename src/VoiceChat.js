@@ -1,13 +1,46 @@
 import { useConversation } from "@elevenlabs/react";
 import { Mic, MicOff } from "lucide-react";
 
-export default function VoiceChat() {
+// Dictionary mapping anatomy parts to English and Hindi/Hinglish keywords
+const INTENT_MAP = {
+  head: ["head", "headache", "migraine", "sir", "sir dard", "sar", "sar dard", "sirdard", "sardard"],
+  eyes: ["eye", "eyes", "aankh", "aankhen", "vision", "blur", "aankhon", "nazar"],
+  chest: ["chest", "heart", "chhati", "seena", "dil", "breath", "saans", "chest pain", "chhati mein dard"],
+  stomach: ["stomach", "belly", "tummy", "pet", "peth", "digestion", "pet dard", "stomach ache", "pachan"],
+  leftArm: ["left arm", "left hand", "bayan hath", "ulta hath", "baya hath", "bayan haath"],
+  rightArm: ["right arm", "right hand", "dayan hath", "sidha hath", "daya hath", "dayan haath"],
+  knees: ["knee", "knees", "ghutna", "ghutne", "ghutno", "joint"],
+  feet: ["foot", "feet", "toe", "heel", "pair", "paon", "talwa"],
+  fullBody: ["full body", "whole body", "poora sharir", "pura jism", "all over", "har jagah", "sab jagah"]
+};
+
+export default function VoiceChat({ setFocus }) {
   const {
     startSession,
     endSession,
     status,
   } = useConversation({
-    onMessage: (msg) => console.log(msg),
+    onMessage: (msg) => {
+      // Parse the transcript text
+      let transcript = "";
+      if (typeof msg === 'string') transcript = msg.toLowerCase();
+      else if (msg.message) transcript = msg.message.toLowerCase();
+      else if (msg.content) transcript = msg.content.toLowerCase();
+
+      console.log("Voice Transcript:", transcript);
+
+      if (!transcript) return;
+
+      // Intent Matching Logic
+      // Check each category and its keywords. First match wins to prevent flickering.
+      for (const [anatomyFocus, keywords] of Object.entries(INTENT_MAP)) {
+        if (keywords.some(keyword => transcript.includes(keyword))) {
+          console.log(`Detected Intent -> Translating to 3D Focus: ${anatomyFocus}`);
+          setFocus(anatomyFocus);
+          break; // Stop looking once we find a match in the current sentence
+        }
+      }
+    },
   });
 
   const start = async () => {
