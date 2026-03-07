@@ -13,7 +13,7 @@ const CAMERA_PRESETS = {
         fov: 30,
     },
     head: {
-        position: [0, 1.8, 1.2],
+        position: [0, 2.9, 1.2],
         lookAt: [0, 1, 0],
         fov: 35,
     },
