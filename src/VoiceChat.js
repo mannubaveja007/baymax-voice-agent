@@ -57,15 +57,15 @@ export default function VoiceChat({ setFocus }) {
       <button
         onClick={start}
         disabled={status === "connected"}
-        className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-xl flex items-center gap-2 text-lg font-medium transition-all duration-300 disabled:opacity-40 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 animate-pulse-subtle"
+        className={`glass-panel text-cyan-400 border-cyan-500/30 px-6 py-3 rounded-2xl flex items-center gap-2 text-lg font-medium transition-all duration-300 ${status === "connected" ? 'opacity-40 scale-95' : 'hover:scale-105 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:text-cyan-300'}`}
       >
-        <Mic className="w-5 h-5" /> Start
+        <Mic className={`w-5 h-5 ${status !== "connected" && "animate-pulse-subtle"}`} /> Start
       </button>
 
       <button
         onClick={stop}
         disabled={status !== "connected"}
-        className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl flex items-center gap-2 text-lg font-medium transition-all duration-300 disabled:opacity-40 hover:scale-105 hover:shadow-lg hover:shadow-red-500/25 animate-pulse-subtle"
+        className={`glass-panel text-red-400 border-red-500/30 px-6 py-3 rounded-2xl flex items-center gap-2 text-lg font-medium transition-all duration-300 ${status !== "connected" ? 'opacity-40 scale-95' : 'hover:scale-105 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:text-red-300 animate-pulse-subtle'}`}
       >
         <MicOff className="w-5 h-5" /> Stop
       </button>

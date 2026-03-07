@@ -6,6 +6,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment } from '@react-three/drei';
 import { AnatomyModel } from './components/AnatomyModel';
 import { useFrame, useThree } from '@react-three/fiber';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
 // Define the camera presets (reusing from TestAnatomy)
@@ -50,13 +51,17 @@ function App() {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-neutral-900">
+    <div className="relative w-full h-screen overflow-hidden bg-cosmic-glow">
 
       {/* 3D Canvas Background replacing Spline */}
       <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none opacity-80">
         <Canvas>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
+          {/* Phase 1: Cinematic Hologram Lighting */}
+          <ambientLight intensity={0.15} />
+          <spotLight position={[5, 10, 5]} angle={0.25} penumbra={1} intensity={180} color="#06b6d4" />
+          <spotLight position={[-5, 5, -5]} angle={0.2} penumbra={1} intensity={250} color="#8b5cf6" />
+          <pointLight position={[0, -2, 2]} intensity={80} color="#3b82f6" distance={8} />
+
           <Environment preset="city" />
 
           {/* Smooth Camera Transition Wrapper using vanilla Three.js math */}
@@ -68,6 +73,16 @@ function App() {
 
           {/* Render the 3D human model */}
           <AnatomyModel />
+
+          {/* Phase 2: Post-Processing Effects (Bloom) */}
+          <EffectComposer>
+            <Bloom
+              intensity={1.2}
+              luminanceThreshold={0.05}
+              luminanceSmoothing={0.9}
+              mipmapBlur
+            />
+          </EffectComposer>
 
           <OrbitControls
             enableZoom={false}
@@ -84,15 +99,15 @@ function App() {
 
       {/* Foreground Content */}
       <div
-        className={`absolute z-10 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${focus === 'fullBody'
-            ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100'
-            : 'top-8 left-8 translate-x-0 translate-y-0 scale-75 items-start mt-0'
+        className={`fixed z-10 flex flex-col items-start transition-all duration-[1500ms] ease-in-out ${focus === 'fullBody'
+          ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 items-center'
+          : 'top-8 left-8 translate-x-0 translate-y-0 scale-[0.6] origin-top-left'
           }`}
       >
-        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-lg pb-1">
+        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-lg pb-1 whitespace-nowrap">
           Baymax AI
         </h1>
-        <div className={`transition-all duration-1000 ease-in-out ${focus === 'fullBody' ? 'mt-8' : 'mt-4 origin-left'}`}>
+        <div className={`transition-all duration-[1500ms] ease-in-out ${focus === 'fullBody' ? 'mt-8' : 'mt-4 origin-top-left scale-110'}`}>
           <VoiceChat setFocus={setFocus} />
         </div>
       </div>
