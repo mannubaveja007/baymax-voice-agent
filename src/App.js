@@ -7,6 +7,7 @@ import { OrbitControls, Environment } from '@react-three/drei';
 import { AnatomyModel } from './components/AnatomyModel';
 import { useFrame, useThree } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
 
 // Define the camera presets (reusing from TestAnatomy)
@@ -44,6 +45,8 @@ function CameraAnimator({ targetPosition, targetLookAt, targetFov }) {
 
 function App() {
   const [focus, setFocus] = useState('fullBody');
+  const [aiTranscript, setAiTranscript] = useState('');
+  const [userTranscript, setUserTranscript] = useState('');
 
   // Temporary routing for development
   if (window.location.hash === "#test") {
@@ -108,8 +111,50 @@ function App() {
           Baymax AI
         </h1>
         <div className={`transition-all duration-[1500ms] ease-in-out ${focus === 'fullBody' ? 'mt-8' : 'mt-4 origin-top-left scale-110'}`}>
-          <VoiceChat setFocus={setFocus} />
+          <VoiceChat
+            setFocus={setFocus}
+            setAiTranscript={setAiTranscript}
+            setUserTranscript={setUserTranscript}
+          />
         </div>
+      </div>
+
+      {/* Real-time Subtitles (Right Side) */}
+      <div className="absolute top-1/2 right-8 -translate-y-1/2 w-80 z-20 pointer-events-none flex flex-col gap-4">
+        <AnimatePresence>
+          {userTranscript && (
+            <motion.div
+              key="user"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="glass-panel p-4 rounded-2xl ml-auto border-cyan-500/20 shadow-[0_4px_30px_rgba(6,182,212,0.15)]"
+            >
+              <p className="text-xs text-cyan-400 font-semibold mb-1 uppercase tracking-wider">You</p>
+              <p className="text-white/90 text-sm">{userTranscript}</p>
+            </motion.div>
+          )}
+
+          {aiTranscript && (
+            <motion.div
+              key="ai"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
+              className="glass-panel p-5 rounded-2xl border-white/10 shadow-2xl"
+            >
+              <p className="text-xs text-white/50 font-semibold mb-2 uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Baymax AI
+              </p>
+              <p className="text-white text-base font-medium leading-relaxed glow-text">
+                {aiTranscript}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Bottom Tagline */}

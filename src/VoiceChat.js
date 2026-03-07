@@ -14,7 +14,7 @@ const INTENT_MAP = {
   fullBody: ["full body", "whole body", "poora sharir", "pura jism", "all over", "har jagah", "sab jagah"]
 };
 
-export default function VoiceChat({ setFocus }) {
+export default function VoiceChat({ setFocus, setAiTranscript, setUserTranscript }) {
   const {
     startSession,
     endSession,
@@ -27,9 +27,16 @@ export default function VoiceChat({ setFocus }) {
       else if (msg.message) transcript = msg.message.toLowerCase();
       else if (msg.content) transcript = msg.content.toLowerCase();
 
-      console.log("Voice Transcript:", transcript);
+      console.log("Voice Transcript Object:", msg);
 
       if (!transcript) return;
+
+      // Update Subtitle State depending on the speaker
+      if (msg.source === 'ai') {
+        setAiTranscript(msg.message || msg.content || transcript);
+      } else {
+        setUserTranscript(msg.message || msg.content || transcript);
+      }
 
       // Intent Matching Logic
       // Check each category and its keywords. First match wins to prevent flickering.
