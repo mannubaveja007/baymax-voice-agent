@@ -18,6 +18,8 @@ The patients require a relaxing and easy to use interface that is able to bridge
 
 ---
 
+
+
 ##  What it Does
 
 Baymax can be seen as your close healthcare companion that listens, empathizes, and displays what is happening to you, but in 3D. 
@@ -66,5 +68,9 @@ Baymax also did not go without its own construction issues in the real world, ou
    npm run start
    ```
 5. Everyone inside the directory, go to the server/ directory and run npm install then npm run start to spin up the MongoDB logging backend.
+
+
+<img width="1800" height="1001" alt="Screenshot 2026-03-07 at 9 44 21 PM" src="https://github.com/user-attachments/assets/29572d22-1c90-4292-a432-e79d2fbf7ad4" />
+
 
 Built with Team Syndicate for the Hackathon.
