@@ -1,6 +1,6 @@
 #  Baymax Voice Agent
 
-*Your interactive, intelligent, and totally 3D medical companion, in your browser.
+Your interactive, intelligent, and totally 3D medical companion, in your browser.
 
 ---
 
@@ -11,8 +11,8 @@ The process of passing through personal health issues is usually stressful, diso
 This gives birth to three main problems:
 
 1. Unjustified Panic and Overworked Medical Systems: Patients often undergo a new wave of anxiety, unless it is timely triaged or soothed with a calming manner. The end result is a waste of time and unnecessary visits to the emergency room and overload on the healthcare infrastructure due to non-critical cases.
-2. **Absence of Visual and Multilingual Context: Conventional medical search results are overly rich in text, and a layperson finds it hard to be able to relate the text to his own body. Moreover, most of the current health bots are strictly tied to text input in the English language, which does not admit of spoken local dialects and bi-lingual terminology (e.g., uniting of headache and sir dard).
-3. **Unavailable Triage: 24/7 access to a calm knowledgeable being which can listen, comprehend, and give immediate contextual response is seldom the case.
+2. Absence of Visual and Multilingual Context: Conventional medical search results are overly rich in text, and a layperson finds it hard to be able to relate the text to his own body. Moreover, most of the current health bots are strictly tied to text input in the English language, which does not admit of spoken local dialects and bi-lingual terminology (e.g., uniting of headache and sir dard).
+3. Unavailable Triage: 24/7 access to a calm knowledgeable being which can listen, comprehend, and give immediate contextual response is seldom the case.
 
 The patients require a relaxing and easy to use interface that is able to bridge the gap between the online symptom search and making a doctor appointment. They need to have a system that does not just listen to what they are saying with their own native tongue, but also displays an awareness of the problem that gives immediate clarity and a next course of action.
 
@@ -34,22 +34,22 @@ It is not a doctor, it is the smart comfortable person who is explaining your bo
 
 Baymax also did not go without its own construction issues in the real world, our bugfixing only ended with enhancing Baymax to be smarter, faster, and more accommodating to everyone.
 
-- **Slow 3D Model Performance: The original 3D anatomy body model was large and was not actorable with older devices. We have gone around this by drastically optimizing the model and performance settings as well as making the WebGL canvas render smoothly even on the mobile phones.
+- Slow 3D Model Performance: The original 3D anatomy body model was large and was not actorable with older devices. We have gone around this by drastically optimizing the model and performance settings as well as making the WebGL canvas render smoothly even on the mobile phones.
 
-- **Large API Credit Usage: API credits in ElevenLabs were being consumed too rapidly because of the inefficient, continuous calls. The solution here was to batch requests, store common conversational replies and only request the generation of what we actually require. This architectural modification saved 60 percent of our API credits.
+- Large API Credit Usage: API credits in ElevenLabs were being consumed too rapidly because of the inefficient, continuous calls. The solution here was to batch requests, store common conversational replies and only request the generation of what we actually require. This architectural modification saved 60 percent of our API credits.
 
-- **Unnaturality of the Camera Movements: First, the camera leaped clumsily between the parts of the body, and this killed the immersive holographic experience. We corrected this by completely rewriting the camera logic to use native Three.js lerp (linear interpolation) functions. This is because the camera now slides around effortlessly and fluidly capturing at any point what must be viewed as much as it would seem to an actual 3D assistant.
+- Unnaturality of the Camera Movements: First, the camera leaped clumsily between the parts of the body, and this killed the immersive holographic experience. We corrected this by completely rewriting the camera logic to use native Three.js lerp (linear interpolation) functions. This is because the camera now slides around effortlessly and fluidly capturing at any point what must be viewed as much as it would seem to an actual 3D assistant.
 
-- **Bilingual Voice Recognition Problems: Standard voice recognition was not working at all when people talked conversational Hindi as they did not recognize the key phrases such as sir dard or migraine at all. This we corrected by developing our own bilingual (English + Hindi / Hinglish) keyword map and enclosing it in fuzzy matching logic. Today, notwithstanding typos, colloquialisms or hybrid dialects, the app reads the intent perfectly.
+- Bilingual Voice Recognition Problems: Standard voice recognition was not working at all when people talked conversational Hindi as they did not recognize the key phrases such as sir dard or migraine at all. This we corrected by developing our own bilingual (English + Hindi / Hinglish) keyword map and enclosing it in fuzzy matching logic. Today, notwithstanding typos, colloquialisms or hybrid dialects, the app reads the intent perfectly.
 
 ---
 
 ##  Tech Stack
-- **Frontend Framework: React 19 / Create React App / TailwindCSS.
-- **Voice AI: ElevenLabs Conversational AI (`elevenlabs/react`)
-- **3D Rendering: Three.js / React Three Fiber (`@react-three/fiber`,`@react-three/drei)
-- **Graphics & UI: React Three PostProcessing (Bloom Passes), Framer Motion, CSS mesh gradients (custom).
-- **Backend: Node.js / Express / MongoDB Atlas (Strict TLS/SSL logic)
+- Frontend Framework: React 19 / Create React App / TailwindCSS.
+- Voice AI: ElevenLabs Conversational AI (`elevenlabs/react`)
+- 3D Rendering: Three.js / React Three Fiber (`@react-three/fiber`,`@react-three/drei)
+- Graphics & UI: React Three PostProcessing (Bloom Passes), Framer Motion, CSS mesh gradients (custom).
+- Backend: Node.js / Express / MongoDB Atlas (Strict TLS/SSL logic)
 
 ---
 
@@ -67,4 +67,4 @@ Baymax also did not go without its own construction issues in the real world, ou
    ```
 5. Everyone inside the directory, go to the server/ directory and run npm install then npm run start to spin up the MongoDB logging backend.
 
-*Built with [?] for the Hackathon.*
+Built with Team Syndicate for the Hackathon.
