@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="public/logo.png" alt="Baymax Logo" width="200"/>
+</div>
+
 #  Baymax Voice Agent
 
 Your interactive, intelligent, and totally 3D medical companion, in your browser.
