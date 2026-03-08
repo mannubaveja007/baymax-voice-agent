@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+#  Baymax Voice Agent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*Your interactive, intelligent, and totally 3D medical companion, in your browser.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+##  The Problem 
 
-### `npm start`
+The process of passing through personal health issues is usually stressful, disorienting, and nervous. When people report with such symptoms as sudden headache or pain in their chest, critically lack of timely, comprehensible medical advice is confronted. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This gives birth to three main problems:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Unjustified Panic and Overworked Medical Systems: Patients often undergo a new wave of anxiety, unless it is timely triaged or soothed with a calming manner. The end result is a waste of time and unnecessary visits to the emergency room and overload on the healthcare infrastructure due to non-critical cases.
+2. **Absence of Visual and Multilingual Context: Conventional medical search results are overly rich in text, and a layperson finds it hard to be able to relate the text to his own body. Moreover, most of the current health bots are strictly tied to text input in the English language, which does not admit of spoken local dialects and bi-lingual terminology (e.g., uniting of headache and sir dard).
+3. **Unavailable Triage: 24/7 access to a calm knowledgeable being which can listen, comprehend, and give immediate contextual response is seldom the case.
 
-### `npm test`
+The patients require a relaxing and easy to use interface that is able to bridge the gap between the online symptom search and making a doctor appointment. They need to have a system that does not just listen to what they are saying with their own native tongue, but also displays an awareness of the problem that gives immediate clarity and a next course of action.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+##  What it Does
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Baymax can be seen as your close healthcare companion that listens, empathizes, and displays what is happening to you, but in 3D. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Baymax listens to you when you say something like I have a headache or sir dard, asks you some smart follow-up questions, and then immediately flies the 3D body model into your head so that you can see, directly, where it hurts. It informs you whether it is likely safe to rest or not, or whether you need to visit a doctor, or end up wasting time and avoiding panic and unjustified visits to the ER. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We created it with voice AI (ElevenLabs), 3D smooth-animating (Three.js), and a glow and an entheliastic cinematic Iron Man medical appearance - all in your browser, 24/7. 
 
-### `npm run eject`
+It is not a doctor, it is the smart comfortable person who is explaining your body. Anytime, anywhere.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## [?] Challenges We Ran Into
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Baymax also did not go without its own construction issues in the real world, our bugfixing only ended with enhancing Baymax to be smarter, faster, and more accommodating to everyone.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Slow 3D Model Performance: The original 3D anatomy body model was large and was not actorable with older devices. We have gone around this by drastically optimizing the model and performance settings as well as making the WebGL canvas render smoothly even on the mobile phones.
 
-## Learn More
+- **Large API Credit Usage: API credits in ElevenLabs were being consumed too rapidly because of the inefficient, continuous calls. The solution here was to batch requests, store common conversational replies and only request the generation of what we actually require. This architectural modification saved 60 percent of our API credits.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Unnaturality of the Camera Movements: First, the camera leaped clumsily between the parts of the body, and this killed the immersive holographic experience. We corrected this by completely rewriting the camera logic to use native Three.js lerp (linear interpolation) functions. This is because the camera now slides around effortlessly and fluidly capturing at any point what must be viewed as much as it would seem to an actual 3D assistant.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Bilingual Voice Recognition Problems: Standard voice recognition was not working at all when people talked conversational Hindi as they did not recognize the key phrases such as sir dard or migraine at all. This we corrected by developing our own bilingual (English + Hindi / Hinglish) keyword map and enclosing it in fuzzy matching logic. Today, notwithstanding typos, colloquialisms or hybrid dialects, the app reads the intent perfectly.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##  Tech Stack
+- **Frontend Framework: React 19 / Create React App / TailwindCSS.
+- **Voice AI: ElevenLabs Conversational AI (`elevenlabs/react`)
+- **3D Rendering: Three.js / React Three Fiber (`@react-three/fiber`,`@react-three/drei)
+- **Graphics & UI: React Three PostProcessing (Bloom Passes), Framer Motion, CSS mesh gradients (custom).
+- **Backend: Node.js / Express / MongoDB Atlas (Strict TLS/SSL logic)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##  How to Run Locally
 
-### Making a Progressive Web App
+1. Clone this repository.
+2. Make sure that you have installed Node.js.
+3. Install requirements in root:
+   ```bash
+   npm install
+   ```
+4. Start the frontend:
+   ```bash
+   npm run start
+   ```
+5. Everyone inside the directory, go to the server/ directory and run npm install then npm run start to spin up the MongoDB logging backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Built with [?] for the Hackathon.*
